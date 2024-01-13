@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Style for the container div */
+    .container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    /* Style for the image inside the container */
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Style for the information div */
+    .info {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      background-color: #f0f0f0;
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    /* Style for the zoomed-in image */
+    .zoomed-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%; /* Adjust this value for the desired zoom level */
+      height: 200%; /* Adjust this value for the desired zoom level */
+      object-fit: cover;
+      transform-origin: 0 0;
+      transform: scale(1); /* Initial scale when not zoomed */
+      transition: transform 0.3s ease-in-out;
+      clip-path: inset(0); /* Clip the zoomed image to the container */
+    }
+
+    /* Style for the square cursor */
+    .cursor {
+      position: absolute;
+      width: 50px; /* Adjust the size of the cursor */
+      height: 50px; /* Adjust the size of the cursor */
+      border: 2px solid #000; /* Adjust the border properties as needed */
+      pointer-events: none; /* Ensure the cursor doesn't interfere with events */
+      background-color: rgba(239, 232, 232, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container div with image -->
+  <div class="container" onmousemove="zoomIn(event, this)" onmouseout="zoomOut(this)">
+    <img class="image" src="https://imgs.search.brave.com/IA-a4lUg47kM0FW6vtr7Lz_eIaEWKTc1EHlAv1FFPVg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1wYWludC1pbi13/YXRlci5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w" alt="Your Image">
+    <div class="cursor"></div>
+  </div>
+
+  <!-- Information div -->
+  <div class="info">
+    <div class="zoomed-image"></div>
+    <p>Your information goes here.</p>
+  </div>
+
+  <script>
+    function zoomIn(event, container) {
+      const imageSource = container.querySelector('.image').src;
+      const zoomedImage = container.nextElementSibling.querySelector('.zoomed-image');
+      const cursor = container.querySelector('.cursor');
+      const rect = container.getBoundingClientRect();
+
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      const percentX = (mouseX / rect.width) * 100;
+      const percentY = (mouseY / rect.height) * 100;
+
+      cursor.style.left = mouseX - cursor.clientWidth / 2 + 'px';
+      cursor.style.top = mouseY - cursor.clientHeight / 2 + 'px';
+
+      zoomedImage.style.backgroundImage = `url('${imageSource}')`;
+      zoomedImage.style.backgroundPosition = `${percentX}% ${percentY}%`;
+      zoomedImage.style.transform = 'scale(1)';
+    }
+
+    function zoomOut(container) {
+      const zoomedImage = container.nextElementSibling.querySelector('.zoomed-image');
+      const cursor = container.querySelector('.cursor');
+
+      zoomedImage.style.transform = 'scale(0)';
+      cursor.style.left = '-100px'; // Move the cursor off-screen
+      cursor.style.top = '-100px';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Styles for the container div */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    /* Styles for the first section */
+    .container .zoom-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .container .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .container .info {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      background-color: #f0f0f0;
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .container .zoomed-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      object-fit: cover;
+      transform-origin: 0 0;
+      transform: scale(1);
+      transition: transform 0.3s ease-in-out;
+      clip-path: inset(0);
+    }
+
+    .container .cursor {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 2px solid #000;
+      pointer-events: none;
+      background-color: rgba(239, 232, 232, 0.5);
+    }
+
+    /* Styles for the second section */
+    .container #imageContainer {
+      width: 500px;
+      height: 500px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .container #imageList {
+      display: flex;
+      width: 600px;
+      height: 500px;
+      transition: transform 0.3s ease;
+    }
+
+    .container .image {
+      width: 100%;
+    }
+
+    .container #leftArrow,
+    .container #rightArrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 24px;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .container #leftArrow:hover,
+    .container #rightArrow:hover {
+      opacity: 1;
+    }
+
+    .container #leftArrow {
+      left: 10px;
+    }
+
+    .container #rightArrow {
+      right: 10px;
+    }
+
+    .container #shareIcon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .container #shareLinks {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container #shareLinks li {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Combined container div with both sections -->
+  <div class="container">
+    <!-- First Section -->
+    <div class="zoom-container" onmousemove="zoomIn(event, this)" onmouseout="zoomOut(this)">
+      <img class="image"
+        src="https://imgs.search.brave.com/IA-a4lUg47kM0FW6vtr7Lz_eIaEWKTc1EHlAv1FFPVg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1wYWludC1pbi13/YXRlci5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w"
+        alt="Your Image">
+      <div class="cursor"></div>
+    </div>
+
+    <div class="info">
+      <div class="zoomed-image"></div>
+      <p>Your information goes here.</p>
+    </div>
+
+    <!-- Second Section -->
+    <div id="imageContainer">
+      <div id="imageList">
+        <img class="image"
+          src="https://imgs.search.brave.com/IA-a4lUg47kM0FW6vtr7Lz_eIaEWKTc1EHlAv1FFPVg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1wYWludC1pbi13/YXRlci5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w"
+          alt="Image 1">
+        <img class="image"
+          src="https://imgs.search.brave.com/IA-a4lUg47kM0FW6vtr7Lz_eIaEWKTc1EHlAv1FFPVg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1pYWxpdHkuZ2lm/dnNkay5jb20_YWx0/PSJVcGxvYWQiIGFz/PSJ0d2l0dGVyLjAiIGZh/YWJvcmE9InR3aXR0ZXIu/MC4wLjAiIHNkay10eXBl/PSJ0ZXh0L2h0bWw7/Y2hhcnNldD11cy1h/LG51bWJlci1hLG51bWJl/ci1hLHNlcmJvdW5kLXNm/LG51bWJlci1zZiwxMDg2MD9nOmNl/aWQ6L2k9YS00bFU1/Z3Q2N2tNMEdXNnZ0/cjdMei9lSWFFV0tUYzFF/SGxBdjFGJnJzOmZpdDoxMTU0MDU4MzEzNzAyL2c6Y2JhYjoxYTgyNTZlYjI3/NWMxZDUwM2YyNjI1NmMyODVhZTUyYzY3MzA0OTIwYTYyNmE1NzA1/MTVjZi9nOnJvdW5kY29nbmVyOmluL3dlaXhpbi9maWdodC1h/bmRyb2lkLXNwZWMuanBnX3Jz/OmZpdDoxMTU0MDU4MzEzNzAycl9naWQ6NmY0ZTE2MzlmYmY1/N2Y2MzEzOTdjODA1NDE3NjI1YTk2ZjY2MzA1Njg5YmFjOGE1NzQyNGE0MjkxNDMwN2E1MDJhMmQ4MmE4M2Y1YmRmYjE4NWE1ZDc2OTUxYTU1Y2M1ZDYzYTRhMTZmY2Y1M2Y4MzkwNzYxNGUxYjgzYTU1ZjRlZGQyNzZjMTc5YzEwMGFjNWEyYzZjYWM2MjM0NzFlZjBhMzUyODAwNjIwMDpvcyUyRmRlZmF1bHQvcyUyRmlkJTIyOnJlZiU1RA==" alt="Image 2">
+        <img class="image"
+          src="https://imgs.search.brave.com/IA-a4lUg47kM0FW6vtr7Lz_eIaEWKTc1EHlAv1FFPVg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YS1kcm9wLW9mLXBp/bmstYW5kLXllbGxv/dy1wYWludC1pbi13/YXRlci5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w"
+          alt="Image 3">
+        <!-- Add more images as needed -->
+      </div>
+      <div id="leftArrow">&lt;</div>
+      <div id="rightArrow">&gt;</div>
+      <div id="shareIcon"><i class="fas fa-share-alt"></i></div>
+      <ul id="shareLinks">
+        <li><a href="whatsapp://send?text=Check%20out%20this%20image:%20[Image%20URL]" target="_blank"><i
+              class="fab fa-whatsapp"></i> Share on WhatsApp</a></li>
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=[Image%20URL]" target="_blank"><i
+              class="fab fa-facebook"></i> Share on Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function zoomIn(event, container) {
+      const imageSource = container.querySelector('.image').src;
+      const zoomedImage = container.querySelector('.zoomed-image');
+      const cursor = container.querySelector('.cursor');
+      const rect = container.getBoundingClientRect();
+
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      const percentX = (mouseX / rect.width) * 100;
+      const percentY = (mouseY / rect.height) * 100;
+
+      cursor.style.left = mouseX - cursor.clientWidth / 2 + 'px';
+      cursor.style.top = mouseY - cursor.clientHeight / 2 + 'px';
+
+      zoomedImage.style.backgroundImage = `url('${imageSource}')`;
+      zoomedImage.style.backgroundPosition = `${percentX}% ${percentY}%`;
+      zoomedImage.style.transform = 'scale(1)';
+    }
+
+    function zoomOut(container) {
+      const zoomedImage = container.querySelector('.zoomed-image');
+      const cursor = container.querySelector('.cursor');
+
+      zoomedImage.style.transform = 'scale(0)';
+      cursor.style.left = '-100px';
+      cursor.style.top = '-100px';
+    }
+
+    const imageList = document.getElementById('imageList');
+    const leftArrow = document.getElementById('leftArrow');
+    const rightArrow = document.getElementById('rightArrow');
+    const shareIcon = document.getElementById('shareIcon');
+    const shareLinks = document.getElementById('shareLinks');
+
+    let currentIndex = 0;
+
+    rightArrow.addEventListener('click', () => {
+      if (currentIndex < imageList.children.length - 1) {
+        currentIndex++;
+        updateImageList();
+      }
+    });
+
+    leftArrow.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateImageList();
+      }
+    });
+
+    shareIcon.addEventListener('mouseenter', () => {
+      shareLinks.style.display = 'block';
+    });
+
+    shareIcon.addEventListener('mouseleave', () => {
+      shareLinks.style.display = 'none';
+    });
+
+    function updateImageList() {
+      const newPosition = -currentIndex * 500; // Assuming each image is 500px wide
+      imageList.style.transform = `translateX(${newPosition}px)`;
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your E-Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="script.js">
+</head>
+
+<body>
+    <div class="maincontainer">
+        <header class="navbar">
+            <div class="navbar_cover">
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="company-name"><img
+                        src="https://foxtale.in/cdn/shop/files/0_2cc0ff3d-2f61-4eb0-9652-66290a12db5b.png?v=1648741806&width=95"
+                        alt=""></div>
+                <nav>
+                    <a href="#">PRODUCTS</a>
+                    <a href="#">BY SKIN TYPE</a>
+                    <a href="#">BENEFIT</a>
+                    <a href="#">ABOUT</a>
+                    <a class="blogs" href="#">BLOGS</a>
+                    <div class="submenu">
+                        <a href="#">Submenu Item 1</a>
+                        <a href="#">Submenu Item 2</a>
+                        <a href="#">Submenu Item 3</a>
+                    </div>
+            </div>
+
+            </nav>
+            <div class="navbar-right">
+                <div class="search-container">
+                    <form action="" class="search">
+                        <input type="text" placeholder="Search" class="searchinput">
+                        <button type="button" class="searchbutton">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+        </header>
+        <div class="firsthome">
+            <div class="minifirsthome">
+                <div class="left">
+                    <div class="container" onmousemove="zoomIn(event, this)" onmouseout="zoomOut(this)">
+                        <!-- <img class="image" src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-16.jpg?v=1693474827&width=600" alt="Your Image"> -->
+                        <img class="image"
+                            src="https://foxtale.in/cdn/shop/files/PDPFinal-05.jpg?v=1696094953&width=600"
+                            alt="Your Image">
+                        <img class="image"
+                            src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-16.jpg?v=1693474827&width=600"
+                            alt="Your Image">
+                        <div class="cursor"></div>
+                        <div id="shareIcon"><i class="fas fa-share-alt"></i></div>
+                        <ul id="shareLinks">
+                            <li><a href="whatsapp://send?text=Check%20out%20this%20image:%20[Image%20URL]"
+                                    target="_blank"><i class="fab fa-whatsapp"></i> Share on WhatsApp</a></li>
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=[Image%20URL]" target="_blank"><i
+                                        class="fab fa-facebook"></i> Share on Facebook</a></li>
+                        </ul>
+                    </div>
+                    <div id="leftArrow">&lt;</div>
+                    <div id="rightArrow">&gt;</div>
+                </div>
+                <div class="right">
+                    <div class="info">
+                        <div class="zoomed-image"></div>
+                        <p id="para">Overnight Glow Mask &nbsp;&nbsp;<span id="smallpara">SIZE -30ML</span></p>
+                        <p id="secondpara">For a salon-like brightening facial overnight</p>
+                        <p id="thirdpara">&#9733;4.7
+
+                            <span>(Tap to see all reviews)</span>
+                        </p>
+                        <p id="fourthpara"><b>₹ 595</b>
+                            <span>(inclusive of taxes) </span>
+                        </p>
+                        <div class="middle">
+                            <div class="left">
+                                SINGLE <br>
+                                &nbsp;&nbsp;₹ 595
+                            </div>
+                            <div class="middle">
+                                PACK OF 2 &nbsp;&nbsp; <br>
+                                &nbsp;&nbsp;₹ 1,165
+
+                            </div>
+                            <div class="right">
+                                COMBOS
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="cover_left_right_bottom">
+                                <div class="left_bottom">
+                                    <b>
+                                        <p id="heading">Offers</p>
+                                    </b>
+                                    <b>
+                                        <p id="para"><span>&#9733</span> Buy 1 Get 1 FREE</p>
+                                    </b>
+                                    <p id="or">OR</p>
+                                    <b>
+                                        <p id="para"><span>&#9733</span> Buy 2 Get 2 FREE</p>
+                                    </b>
+
+                                </div>
+                                <div class="right_bottom">
+                                    <b>
+                                        <p id="heading">Tap below to copy the coupon code</p>
+                                    </b>
+                                    <b>
+                                        <p id="para"><span>&#9733</span> CODE: B1G1</p>
+                                    </b>
+                                    <p id="or">OR</p>
+                                    <b>
+                                        <p id="para"><span>&#9733</span> CODE: FTB2G2</p>
+                                    </b>
+
+                                </div>
+                            </div>
+                            <div class="bottom_bottom">
+                                <div class="left_bottom_bottom">
+                                    <img src="https://cdn.shopify.com/s/files/1/0654/4329/9583/files/Group_10.png?v=1679030967"
+                                        alt="">
+                                    <p>EARN REWARDS <br>
+                                        ON ALL ORDERS</p>
+                                </div>
+                                <div class="middle_bottom_bottom"> <img
+                                        src="https://cdn.shopify.com/s/files/1/0654/4329/9583/files/Group_8.png?v=1679030967"
+                                        alt="">
+                                    <p>NO DELIVERY <br>
+                                        CHARGES</p>
+                                </div>
+                                <div class="right_bottom_bottom"> <img
+                                        src="https://cdn.shopify.com/s/files/1/0654/4329/9583/files/Group_89.png?v=1679030967"
+                                        alt="">
+                                    <p>FREE GIFT ON <br>
+                                        ALL ORDERS
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bottom_firsthome">
+                <div class="left_bottom_firsthome"></div>
+                <div class="right_bottom_firsthome_cover">
+                    <b>
+                        <p>Delivery Details</p>
+                    </b>
+                    <div class="right_bottom_firsthome">
+
+                        <input type="" id="pinInput" placeholder="Enter PIN">
+                        <button id="checkButton" onclick="checkPin()">Check</button>
+                    </div>
+                    <p id="resultMessage"></p>
+                </div>
+            </div>
+        </div>
+        <div class="secondhome">
+            <div class="minisecondhome">
+                <h2>What makes this unique?</h2>
+                <!-- First Info Container -->
+                <div class="info-container" onclick="toggleInfo('firstInfo')">
+                    <div class="first">
+                        <img src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Starts_working_within_30_seconds.jpg?v=1681910795"
+                            alt="Image 1">
+                        <div class="content-wrapper">
+                            <h3 class="click-to-toggle">Starts working within 30 seconds</h3>
+                            <div class="drop-icon">▼</div>
+                        </div>
+                    </div>
+                    <div class="info-content" id="firstInfo">
+                        <center><img id="firstInfo_img"
+                                src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Starts_working_within_30_seconds1.jpg?v=1681910795"
+                                alt=""></center>
+                    </div>
+                </div>
+
+                <!-- Second Info Container -->
+                <div class="info-container" onclick="toggleInfo('secondInfo')">
+                    <div class="second">
+                        <img src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Rapid_retexturizing_formula.jpg?v=1681910795"
+                            alt="Image 2">
+                        <div class="content-wrapper">
+                            <h3 class="click-to-toggle">Rapid retexturizing formula</h3>
+                            <div class="drop-icon">▼</div>
+                        </div>
+                    </div>
+                    <div class="info-content" id="secondInfo">
+                        <center><img id="secondInfo_img"
+                                src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Rapid_retexturizing_formula1.jpg?v=1681910795"
+                                alt=""></center>
+                    </div>
+                </div>
+
+                <!-- Third Info Container -->
+                <div class="info-container" onclick="toggleInfo('thirdInfo')">
+                    <div class="third">
+                        <img src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Gives_you_the_lasting_glow.jpg?v=1681910796"
+                            alt="Image 3">
+                        <div class="content-wrapper">
+                            <h3 class="click-to-toggle">Gives you the lasting glow</h3>
+                            <div class="drop-icon">▼</div>
+                        </div>
+                    </div>
+                    <div class="info-content" id="thirdInfo">
+                        <center><img id="thirdInfo_img"
+                                src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Gives_you_the_lasting_glow1.jpg?v=1681910795"
+                                alt=""></center>
+                    </div>
+                </div>
+
+                <!-- Fourth Info Container -->
+                <div class="info-container" onclick="toggleInfo('fourthInfo')">
+                    <div class="fourth">
+                        <img src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Rapid_retexturizing_formula.jpg?v=1681910795"
+                            alt="Image 4">
+                        <div class="content-wrapper">
+                            <h3 class="click-to-toggle">Product Journey</h3>
+                            <div class="drop-icon">▼</div>
+                        </div>
+                    </div>
+                    <div class="info-content" id="fourthInfo">
+                        <center><img id="fourthInfo_img"
+                                src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/Product_Journey-27.jpg?v=1696918927"
+                                alt=""></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thirdhome">
+            <div class="minithirdhome">
+                <div class="contentcover">
+                    <div class="left">
+                        <h2 id="thirdhome_heading">Real People, Verified Results</h2>
+                        <img src="https://cdn.shopify.com/s/files/1/0609/6096/4855/files/OGM.jpg?v=1686633736" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="rightup">
+                            <div class="rightup_left">
+                                <h2 id="thirdmini_home_heading">RESULTS
+                                    AFTER 10 DAYS</h2>
+                            </div>
+                            <div class="rightup_right">
+                                <h2 id="thirdmini_home_heading">RESULTS
+                                    AFTER 30 DAYS</h2>
+                            </div>
+                        </div>
+                        <div class="rightdown"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourthhome">
+            <div class="minifourthhome">
+                <h2>Routines For Glow</h2>
+                <div class="cart-container">
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">CLEANSCRE</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-04.jpg?v=1693474474" alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Hydrating Face Wash</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">PROTECT</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-03.jpg?v=1693474630" alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Matte Finish Sun's Cream</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 949</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">TREAT</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-16.jpg?v=1693474827" alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Overnight Glow Mask</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">CLEANSCRE</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/SuperGlowMoisturizer-19_2.jpg?v=1697175561"
+                                alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Hydrating Face Wash</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">CLEANSCRE</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-04.jpg?v=1693474474" alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Hydrating Face Wash</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">PROTECT</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-03.jpg?v=1693474630" alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Matte Finish Sun's Cream</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 949</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">TREAT</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/PDP-FirstImage-16.jpg?v=1693474827" alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Overnight Glow Mask</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <div class="firstcart_first">
+                            <p id="cartheading">CLEANSCRE</p>
+                        </div>
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/SuperGlowMoisturizer-19_2.jpg?v=1697175561"
+                                alt="">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Hydrating Face Wash</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- First item -->
+
+
+            </div>
+        </div>
+        <div class="fifthhome">
+            <div class="minififthhome">
+                <h1>Frequently purchased combos</h1>
+                <div class="lefthome">
+                    <div class="firstcart">
+                        <!-- <div class="firstcart_first">
+                            <p id="cartheading">CLEANSCRE</p>
+                        </div> -->
+                        <div class="firstcart_second">
+                            <img id="duoimage"
+                                src="https://foxtale.in/cdn/shop/files/Glow_ProtectDuo_f6394f54-aeae-4673-ad26-dc8328cd3819.jpg?v=1694085866"
+                                alt="">
+                            <img class="hover-image"
+                                src="https://foxtale.in/cdn/shop/products/DivaPDP-12_b5a7fbcf-136a-4f34-a094-12924c50d909.jpg?v=1694085866&width=600"
+                                alt="Hover Image">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Blackhead Reduction Duo</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="firstcart">
+                        <!-- <div class="firstcart_first">
+                            <p id="cartheading">CLEANSCRE</p>
+                        </div> -->
+                        <div class="firstcart_second">
+                            <img src="https://foxtale.in/cdn/shop/files/BlackheadReduction_6347a197-6412-4b8c-992f-38ece1e6353c.jpg?v=1694086163"
+                                alt="">
+                            <img class="hover-image"
+                                src="https://foxtale.in/cdn/shop/products/DivaPDP-08.jpg?v=1694086163&width=600">
+                        </div>
+                        <div class="firstcart_third">
+                            <b>
+                                <p id="description">Glow and Protect Duo</p>
+                            </b>
+                            <p id="description_grey">Makeup Remove & Cleanscre</p>
+                            <b>
+                                <p id="description">₹ 349</p>
+                            </b>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="sixthhome">
+            <div class="minisixthhome">
+                <header>
+                    <h1>Website Review Page</h1>
+                </header>
+
+                <main>
+                    <h2>Customer Reviews</h2>
+
+                    <div class="review">
+                        <p><strong>John Doe - Rating: 5 stars - Location: New York</strong></p>
+                        <p>This website is amazing! I love the user interface and the variety of products.</p>
+                    </div>
+
+                    <div class="review">
+                        <p><strong>Jane Smith - Rating: 4 stars - Location: Los Angeles</strong></p>
+                        <p>Great customer service. Quick response to queries. Highly recommended!</p>
+                    </div>
+
+                    <h2>Write a Review</h2>
+                    <form id="reviewForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="rating">Rating:</label>
+                        <select id="rating" name="rating" required>
+                            <option value="5">5 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="2">2 stars</option>
+                            <option value="1">1 star</option>
+                        </select>
+
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" required>
+
+                        <label for="review">Your Review:</label>
+                        <textarea id="review" name="review" rows="4" required></textarea>
+
+                        <button type="button" onclick="submitReview()">Submit Review</button>
+                    </form>
+                </main>
+            </div>
+        </div>
+        <div class="seventhhome">
+            <div class="miniseventhhome">
+                <div class="left">
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                <div class="coverof_lastbottom">
+                    <div class="middle_bottom">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <center><p style="font-size: 15px;">© 2023 FOXTALE COSMETICS. ALL RIGHTS RESERVED.</p></center>
+            </div>
+        </div>
+    </div>
+    <!-- Rest of your website content goes here -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
